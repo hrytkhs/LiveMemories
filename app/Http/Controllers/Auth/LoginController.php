@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Hash;
 use Auth;
 use Socialite;
 use App\User;
@@ -75,17 +76,23 @@ class LoginController extends Controller
         return Socialite::driver('github')->redirect();
     }
 
-    public function handleProviderCallback() {
-    try {
-      $user = \Socialite::with("github")->user();
-    } catch (\Exception $e) {
-      return redirect('/'); // エラーならトップへ転送
+    public function handleProviderCallback()
+  {
+      $socialUser = Socialite::driver('github')->stateless()->user();
+      $user = User::where([ 'email' => $socialUser->getEmail() ])->first();
+
+      if ($user) {
+          Auth::login($user);
+          return redirect('users/' . $user->id)->with('message','ログインしました');
+      } else {
+          $user = User::create([
+              'name' => $socialUser->getNickname(),
+              'email' => $socialUser->getEmail(),
+              'password' => Hash::make($socialUser->getNickname()),
+          ]);
+          Auth::login($user);
+          return redirect('users/' . $user->id)->with('message','ログインしました');
+      }
     }
-    // mailアドレスおよび名前を保存
-    $authUser = User::firstOrCreate(['email' => $user->getEmail(),
-                                     'name' => $user->getName()]);
-    auth()->login($authUser); // ログイン
-    return redirect('users/' . $user->id)->with('message','ログインしました');
-  }
 
 }
