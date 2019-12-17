@@ -82,14 +82,6 @@
                             </ul>
                         </li>
                     </ul>
-                    <ul>
-                        <li>
-                            GitHub：
-                            <a href="https://github.com/hrytkhs/livememories.git">
-                                https://github.com/hrytkhs/livememories.git
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
