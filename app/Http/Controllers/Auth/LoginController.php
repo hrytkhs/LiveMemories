@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Auth;
+use Socialite;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -65,4 +68,24 @@ class LoginController extends Controller
         // ログアウトしたら、トップページへ移動
         return $this->loggedOut($request) ?: redirect('/')->with('message','ログアウトしました');
     }
+
+    // GitHub の認証ページへ遷移
+    public function redirectToProvider()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function handleProviderCallback() {
+    try {
+        $user = \Socialite::with("github")->user();
+    } catch (\Exception $e) {
+        return redirect('/'); // エラーならトップへ転送
+    }
+    // mailアドレスおよび名前を保存
+    $authUser = User::firstOrCreate(['email' => $user->getEmail(),
+        'name' => $user->getName()]);
+        auth()->login($authUser);
+        return redirect('users/' . $user->id)->with('message','ログインしました');
+    }
+
 }

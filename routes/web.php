@@ -24,3 +24,7 @@ Route::resource('posts', 'PostController');
 Route::resource('artists', 'ArtistController');
 
 Route::get('company', function () {return view('company');});
+
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');

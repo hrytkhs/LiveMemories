@@ -65,6 +65,11 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="form-group row">
+                            <label for="github" class="col-md-6 col-form-label text-md-right">
+                                <a href="{{ url('login/github') }}">Login with GitHub</a>
+                            </label>
+                        </div>
                     </div>
                 <div class="card-footer">
                     <ul>
