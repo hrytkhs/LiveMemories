@@ -76,22 +76,11 @@ class LoginController extends Controller
         return Socialite::driver('github')->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallback(Request $request)
     {
-        $socialUser = Socialite::driver('github')->stateless()->user();
-        $user = User::where([ 'email' => $socialUser->getEmail() ])->first();
+        $user = Socialite::driver('github')->user();
 
-        if ($user) {
-            Auth::login($user);
-            return redirect('users/' . $user->id)->with('message','ログインしました');
-        } else {
-            $user = User::create([
-                'name' => $socialUser->getNickname(),
-                'email' => $socialUser->getEmail(),
-                'password' => Hash::make($socialUser->getNickname()),
-            ]);
-            Auth::login($user);
-            return redirect('users/' . $user->id)->with('message','ログインしました');
-        }
+        $request->session()->put('github_token', $user->token);
+        return redirect('github');
     }
 }
