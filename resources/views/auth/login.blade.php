@@ -67,7 +67,7 @@
                         </form>
                         <div class="form-group row">
                             <label for="github" class="col-md-6 col-form-label text-md-right">
-                                <a href="{{ url('login/github') }}">Login with GitHub</a>
+                                <a href="{{ url('login/github')}}" class="btn btn-social-icon btn-github"><i class="fa fa-github"></i></a>
                             </label>
                         </div>
                     </div>
@@ -85,8 +85,8 @@
                     <ul>
                         <li>
                             GitHub：
-                            <a href="https://github.com/hrytkhs/">
-                                https://github.com/hrytkhs/
+                            <a href="https://github.com/hrytkhs/livememories.git">
+                                https://github.com/hrytkhs/livememories.git
                             </a>
                         </li>
                     </ul>

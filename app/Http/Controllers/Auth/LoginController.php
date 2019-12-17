@@ -70,17 +70,29 @@ class LoginController extends Controller
         return $this->loggedOut($request) ?: redirect('/')->with('message','ログアウトしました');
     }
 
+
     // GitHub の認証ページへ遷移
     public function redirectToProvider()
     {
         return Socialite::driver('github')->redirect();
     }
 
-    public function handleProviderCallback(Request $request)
+    public function handleProviderCallback(\App\SocialAccountsService $accountService, $provider)
     {
-        $user = Socialite::driver('github')->user();
 
-        $request->session()->put('github_token', $user->token);
-        return redirect('github');
+        try {
+            $user = \Socialite::with($provider)->user();
+        } catch (\Exception $e) {
+            return redirect('/login');
+        }
+
+        $authUser = $accountService->findOrCreate(
+            $user,
+            $provider
+        );
+
+        auth()->login($authUser, true);
+
+        return redirect()->to('/home');
     }
 }
