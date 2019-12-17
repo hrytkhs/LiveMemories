@@ -51,8 +51,8 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        // // ログインしたら、ユーザー自身のプロフィールページへ移動
-        // return redirect('users/' . $user->id)->with('message','ログインしました');
+        // ログインしたら、ユーザー自身のプロフィールページへ移動
+        return redirect('users/' . $user->id)->with('message','ログインしました');
     }
 
     /**
@@ -77,10 +77,21 @@ class LoginController extends Controller
     }
 
     public function handleProviderCallback()
-  {
-      $socialUser = Socialite::driver('github')->stateless()->user();
-      $user = User::where([ 'email' => $socialUser->getEmail() ])->first();
+    {
+        $socialUser = Socialite::driver('github')->stateless()->user();
+        $user = User::where([ 'email' => $socialUser->getEmail() ])->first();
 
+        if ($user) {
+            Auth::login($user);
+            return redirect('users/' . $user->id)->with('message','ログインしました');
+        } else {
+            $user = User::create([
+                'name' => $socialUser->getNickname(),
+                'email' => $socialUser->getEmail(),
+                'password' => Hash::make($socialUser->getNickname()),
+            ]);
+            Auth::login($user);
+            return redirect('users/' . $user->id)->with('message','ログインしました');
+        }
     }
-
 }
