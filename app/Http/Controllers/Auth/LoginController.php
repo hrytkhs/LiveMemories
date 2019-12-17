@@ -51,8 +51,8 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        // ログインしたら、ユーザー自身のプロフィールページへ移動
-        return redirect('users/' . $user->id)->with('message','ログインしました');
+        // // ログインしたら、ユーザー自身のプロフィールページへ移動
+        // return redirect('users/' . $user->id)->with('message','ログインしました');
     }
 
     /**
