@@ -76,7 +76,16 @@ class LoginController extends Controller
     }
 
     public function handleProviderCallback() {
-    $user = Socialite::driver('github')->user();
+    try {
+      $user = \Socialite::with("github")->user();
+    } catch (\Exception $e) {
+      return redirect('/'); // エラーならトップへ転送
     }
+    // mailアドレスおよび名前を保存
+    $authUser = User::firstOrCreate(['email' => $user->getEmail(),
+                                     'name' => $user->getName()]);
+    auth()->login($authUser); // ログイン
+    return redirect('users/' . $user->id)->with('message','ログインしました');
+  }
 
 }
