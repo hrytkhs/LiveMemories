@@ -89,6 +89,7 @@ class LoginController extends Controller
             $newuser->email = $userSocial->getEmail();
             $newuser->save();
         }
+        Auth::login($user);
         return redirect('/');
     }
 }
