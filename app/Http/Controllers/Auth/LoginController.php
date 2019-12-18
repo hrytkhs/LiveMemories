@@ -37,7 +37,15 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+      $this->middleware(function ($request, $next) {
+          $this->user = \Auth::user();
+          if (empty($this->user->id)) {
+              $this->user = new \stdClass;
+              $this->user->id = false;
+          }
+          return $next($request);
+      });
+        // $this->middleware('guest')->except('logout');
     }
 
     /**
