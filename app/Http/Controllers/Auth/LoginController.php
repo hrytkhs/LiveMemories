@@ -88,7 +88,6 @@ class LoginController extends Controller
             $newuser->name = $userSocial->getName();
             $newuser->email = $userSocial->getEmail();
             $newuser->save();
-            ]);
         }
     }
 }
