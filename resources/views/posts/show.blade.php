@@ -55,9 +55,9 @@
 
     {{-- 編集・削除ボタン --}}
     <div class="edit">
-        <button href="{{ url('posts/'.$post->id.'/edit') }}" class="btn btn-primary">
+        <a href="{{ url('posts/'.$post->id.'/edit') }}" class="btn btn-primary">
             編集
-        </button>
+        </a>
         @component('components.btn-del')
             @slot('controller', 'posts')
             @slot('id', $post->id)
