@@ -37,15 +37,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-      $this->middleware(function ($request, $next) {
-          $this->user = \Auth::user();
-          if (empty($this->user->id)) {
-              $this->user = new \stdClass;
-              $this->user->id = false;
-          }
-          return $next($request);
-      });
-        // $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
     /**
@@ -85,21 +77,21 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         try {
-            $data = Socialite::driver($provider)->user();
-        } catch (\Exception $e) {
+            $p_user = Socialite::driver($provider)->user();
+        } catch (Exception $e) {
             return redirect('/login');
         }
         //追加か更新
         if ($this->user->id) {
             $u = User::where('id', $this->user->id)->update(
-                [$provider.'_id' => $data->getId()]
+                [$provider.'_id' => $p_user->getId()]
             );
         } else {
-            $u = User::firstOrCreate([$provider.'_id' => $data->getId()], [
-                $provider.'_id' => $data->getId(),
-                'name' => $data->getName()
+            $u = User::firstOrCreate([$provider.'_id' => $p_user->getId()], [
+                $provider.'_id' => $p_user->getId(),
+                'name' => $p_user->getName()
             ]);
-            \Auth::login($u);
+            Auth::login($u);
         }
         return redirect($this->redirectTo);
     }
