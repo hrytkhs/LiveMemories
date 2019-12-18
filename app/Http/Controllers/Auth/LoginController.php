@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Hash;
-use Auth;
-use Socialite;
 use App\User;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -70,14 +68,31 @@ class LoginController extends Controller
         return $this->loggedOut($request) ?: redirect('/')->with('message','ログアウトしました');
     }
 
-    // GitHub の認証ページへ遷移
-    public function redirectToProvider()
+    // SNS認証
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
-        //
+        try {
+            $data = Socialite::driver($provider)->user();
+        } catch (\Exception $e) {
+            return redirect('/login');
+        }
+        //追加か更新
+        if ($this->user->id) {
+            $u = User::where('id', $this->user->id)->update(
+                [$provider.'_id' => $data->getId()]
+            );
+        } else {
+            $u = User::firstOrCreate([$provider.'_id' => $data->getId()], [
+                $provider.'_id' => $data->getId(),
+                'name' => $data->getName()
+            ]);
+            \Auth::login($u);
+        }
+        return redirect($this->redirectTo)->with('message','ログインしました');
     }
 }

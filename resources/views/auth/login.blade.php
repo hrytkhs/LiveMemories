@@ -65,11 +65,11 @@
                                 </div>
                             </div>
                         </form>
-                        <!-- <div class="form-group row">
+                        <div class="form-group row">
                             <label for="github" class="col-md-6 col-form-label text-md-right mt-2">
-                                <a href="{{ url('login/github') }}" class="btn btn-primary">GitHubアカウントでログイン</a>
+                                <a href="{{ url('/login/github') }}" class="btn btn-primary">GitHubアカウントでログイン</a>
                             </label>
-                        </div> -->
+                        </div>
                     </div>
                 <div class="card-footer">
                     <ul>
