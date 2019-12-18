@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\User;
+use Socialite;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -48,7 +51,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         // ログインしたら、ユーザー自身のプロフィールページへ移動
-        return redirect('users/' . $user->id)->with('message','ログインしました');
+        return redirect('users/' . $user->id);
     }
 
     /**
@@ -64,5 +67,41 @@ class LoginController extends Controller
 
         // ログアウトしたら、トップページへ移動
         return $this->loggedOut($request) ?: redirect('/')->with('message','ログアウトしました');
+    }
+
+    // SNSログイン
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    //Callback処理
+    public function handleProviderCallback($provider)
+    {
+        //ソーシャルサービス（情報）を取得
+        $userSocial = Socialite::driver($provider)->stateless()->user();
+        //emailで登録を調べる
+        $user = User::where(['email' => $userSocial->getEmail()])->first();
+
+        //登録（email）の有無で分岐
+        if($user){
+
+            //登録あればそのままログイン（2回目以降）
+            Auth::login($user);
+            return redirect('/');
+
+        }else{
+
+            //なければ登録（初回）
+            $newuser = new User;
+            $newuser->name = $userSocial->getName();
+            $newuser->email = $userSocial->getEmail();
+            $newuser->save();
+
+            //そのままログイン
+            Auth::login($newuser);
+            return redirect('/');
+
+        }
     }
 }

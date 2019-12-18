@@ -25,6 +25,6 @@ Route::resource('artists', 'ArtistController');
 
 Route::get('company', function () {return view('company');});
 
-Route::get('/login/{provider}', 'Auth\SocialController@redirectToProvider');
+Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 
-Route::get('/login/{provider}/callback', 'Auth\SocialController@handleProviderCallback');
+Route::get('/login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
