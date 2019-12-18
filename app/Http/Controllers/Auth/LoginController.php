@@ -50,7 +50,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         // ログインしたら、ユーザー自身のプロフィールページへ移動
-        // return redirect('users/' . $user->id)->with('message','ログインしました');
+        return redirect('users/' . $user->id)->with('message','ログインしました');
     }
 
     /**
@@ -61,11 +61,11 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        // $this->guard()->logout();
-        // $request->session()->invalidate();
-        //
-        // // ログアウトしたら、トップページへ移動
-        // return $this->loggedOut($request) ?: redirect('/')->with('message','ログアウトしました');
+        $this->guard()->logout();
+        $request->session()->invalidate();
+
+        // ログアウトしたら、トップページへ移動
+        return $this->loggedOut($request) ?: redirect('/')->with('message','ログアウトしました');
     }
 
     // SNS認証
@@ -93,6 +93,6 @@ class LoginController extends Controller
             ]);
             \Auth::login($u);
         }
-        return redirect($this->redirectTo);
+        return redirect('users/' . $user->id)->with('message','ログインしました');
     }
 }
