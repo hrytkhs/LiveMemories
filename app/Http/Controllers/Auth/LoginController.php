@@ -93,6 +93,6 @@ class LoginController extends Controller
             ]);
             \Auth::login($u);
         }
-        return redirect($this->redirectTo)->with('message','ログインしました');
+        return redirect($this->redirectTo);
     }
 }
