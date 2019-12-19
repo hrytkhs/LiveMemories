@@ -13,7 +13,6 @@
 
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-social.css') }}">
 
     {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/d66ee61711.js" crossorigin="anonymous"></script>
