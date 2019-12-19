@@ -85,7 +85,7 @@ class LoginController extends Controller
             Auth::login($u);
             return redirect('users/' . $u->id)->with('message','ログインしました');
         } else {
-          $user = User::create([
+          $u = User::create([
               'name' => $socialUser->getNickname(),
               'email' => $socialUser->getEmail(),
               'password' => Hash::make($socialUser->getNickname()),
