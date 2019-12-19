@@ -79,16 +79,16 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $userSocial = Socialite::driver($provider)->user();
-        $user = User::where(['email' => $userSocial->getEmail()])->first();
-        if ($user) {
-            Auth::login($user);
+        $u = User::where(['email' => $userSocial->getEmail()])->first();
+        if ($u) {
+            Auth::login($u);
             return redirect('/');
         } else {
             $newuser = new User;
             $newuser->name = $userSocial->getName();
             $newuser->email = $userSocial->getEmail();
             $newuser->save();
-            Auth::login($user);
+            Auth::login($u);
             return redirect('/');
         }
     }
