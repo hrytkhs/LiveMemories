@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Socialite;
 use Auth;
+use Hash;
 
 class LoginController extends Controller
 {
