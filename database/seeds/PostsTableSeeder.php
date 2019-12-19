@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder
         $faker = Faker\Factory::create('ja_JP');
 
         // ランダム投稿
-        for ($i = 0; $i < 50; $i++)
+        for ($i = 0; $i < 100; $i++)
         {
             DB::table('posts')->insert([
                 'artist' => $faker->name(),

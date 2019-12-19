@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 <div class="container">
-    <h1>公演情報の登録</h1>
+    <h1>公演情報の投稿</h1>
     <form action="{{ url('posts') }}" method="post">
         @csrf
         @method('POST')
@@ -25,7 +25,7 @@
             <label for="body">セットリスト</label>
             <textarea id="body" class="form-control" name="body" rows="8" required placeholder="例：&#13;&#10;1. song1&#13;&#10;2. song2&#13;&#10;3. song3"></textarea>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary float-right">登録</button>
+        <button type="submit" name="submit" class="btn btn-primary float-right">投稿</button>
     </form>
 </div>
 @endsection

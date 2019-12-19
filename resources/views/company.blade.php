@@ -7,7 +7,7 @@
             <tbody>
                 <tr>
                     <th>会社名</th>
-                    <td>株式会社ミュージック</td>
+                    <td>株式会社ふじやま</td>
                 </tr>
                 <tr>
                     <th>所在地</th>
@@ -20,7 +20,7 @@
                 <tr>
                     <th>お問い合わせ</th>
                     <td>
-                        <a href="#">https://www.livememories.jp</a>
+                        <a href="https://livememories.herokuapp.com/">https://livememories.herokuapp.com/</a>
                     </td>
                 </tr>
             </tbody>

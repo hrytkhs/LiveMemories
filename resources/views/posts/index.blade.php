@@ -35,7 +35,7 @@
                     アーティスト名：{{ $post->artist }}
                     <br>
                     投稿者：{{ $post->user->name }}
-                    <span class="float-right">
+                    <span class="float-right mt-1">
                         投稿日時： {{ $post->created_at->format('Y.m.d') }}
                     </span>
                 </div>

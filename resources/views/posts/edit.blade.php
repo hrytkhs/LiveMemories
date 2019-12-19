@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 <div class="container">
-    <h1>編集：{{ $post->title }}</h1>
+    <h1>投稿の編集</h1>
     <form action="{{ url('posts/'.$post->id) }}" method="post">
         @csrf
         @method('PUT')
@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <label for="date">開催日</label><br>
-            <input id="date" type="date" class="form-control w-25" name="date" value="{{ $post->date }}" required>
+            <input id="date" type="date" class="form-control w-50" name="date" value="{{ $post->date }}" required>
         </div>
         <div class="form-group">
             <label for="venu">会場名</label>
