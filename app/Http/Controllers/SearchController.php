@@ -14,6 +14,7 @@ class SearchController extends Controller
         ->orWhere('title', 'like', "%{$request->search}%")
         ->orWhere('venu', 'like', "%{$request->search}%")
         ->orWhere('body', 'like', "%{$request->search}%")
+        ->orderBy('updated_at', 'desc')
         ->paginate(5);
 
         $search_result = ' " '.($request->search).' " '.'の検索結果 '.$posts->total().' 件 ';
