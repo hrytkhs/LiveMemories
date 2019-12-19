@@ -82,14 +82,14 @@ class LoginController extends Controller
         $u = User::where(['email' => $userSocial->getEmail()])->first();
         if ($u) {
             Auth::login($u);
-            return redirect('/');
+            return redirect('users/' . $user->id)->with('message','ログインしました');
         } else {
             $newuser = new User;
             $newuser->name = $userSocial->getName();
             $newuser->email = $userSocial->getEmail();
             $newuser->save();
             Auth::login($u);
-            return redirect('/');
+            return redirect('users/' . $user->id)->with('message','ログインしました');
         }
     }
 }
