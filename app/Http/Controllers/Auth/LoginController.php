@@ -78,18 +78,19 @@ class LoginController extends Controller
     //Callback処理
     public function handleProviderCallback($provider)
     {
-        $userSocial = Socialite::driver($provider)->user();
-        $u = User::where(['email' => $userSocial->getEmail()])->first();
+        $socialUser = Socialite::driver($provider)->user();
+        $u = User::where(['email' => $socialUser->getEmail()])->first();
         if ($u) {
             Auth::login($u);
-            return redirect('users/' . $user->id)->with('message','ログインしました');
+            return redirect('users/' . $u->id)->with('message','ログインしました');
         } else {
-            $newuser = new User;
-            $newuser->name = $userSocial->getName();
-            $newuser->email = $userSocial->getEmail();
-            $newuser->save();
-            Auth::login($u);
-            return redirect('users/' . $user->id)->with('message','ログインしました');
+          $user = User::create([
+              'name' => $socialUser->getNickname(),
+              'email' => $socialUser->getEmail(),
+              'password' => Hash::make($socialUser->getNickname()),
+          ]);
+          Auth::login($u);
+          return redirect('users/' . $u->id)->with('message','ログインしました');
         }
     }
 }
