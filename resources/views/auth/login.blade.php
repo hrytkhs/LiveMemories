@@ -67,7 +67,7 @@
                         </form>
                         <div class="form-group row">
                             <label for="github" class="col-md-8 offset-md-4">
-                                <a href="{{ url('/login/github') }}" class="btn btn-social btn-github">
+                                <a href="{{ url('/login/github') }}" class="btn btn-github" style="">
                                     <span class="fab fa-github"></span>
                                     GitHubでログイン
                                 </a>
