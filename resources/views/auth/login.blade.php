@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
+                                <div class="col-md-8 offset-md-4 mb-4">
                                     <button type="submit" class="btn btn-primary">
                                         ログイン
                                     </button>
@@ -66,8 +66,11 @@
                             </div>
                         </form>
                         <div class="form-group row">
-                            <label for="github" class="col-md-6 col-form-label text-md-right mt-2">
-                                <a href="{{ url('/login/github') }}" class="btn btn-primary">GitHubアカウントでログイン</a>
+                            <label for="github" class="col-md-8 offset-md-4">
+                                <a href="{{ url('/login/github') }}" class="btn btn-social btn-github">
+                                    <span class="fab fa-github"></span>
+                                    GitHubでログイン
+                                </a>
                             </label>
                         </div>
                     </div>
