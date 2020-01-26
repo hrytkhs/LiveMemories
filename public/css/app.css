@@ -26,13 +26,13 @@
 
 .btn-twitter {
     color: #fff;
-    background-color: #444;
+    background-color: #55acee;
     border-color: rgba(0,0,0,0.2)
     border-radius: 1;
 }
 .btn-twitter:hover {
     color: #fff;
-    background-color: #2b2b2b;
+    background-color: #2795e9;
     border-color: rgba(0,0,0,0.2)
 }
 

@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4 mb-4">
+                                <div class="col-md-8 offset-md-4 mb-5">
                                     <button type="submit" class="btn btn-primary">
                                         ログイン
                                     </button>
@@ -66,14 +66,13 @@
                             </div>
                         </form>
                         <div class="form-group row">
+                            <label for="sns-login" class="col-md-8 offset-md-4">--- SNSアカウントでログイン ---</label>
                             <label for="twitter" class="col-md-8 offset-md-4">
                                 <a href="{{ url('/login/twitter') }}" class="btn btn-twitter" style="">
                                     <span class="fab fa-twitter"></span>
                                     Twitterでログイン
                                 </a>
                             </label>
-                        </div>
-                        <div class="form-group row">
                             <label for="github" class="col-md-8 offset-md-4">
                                 <a href="{{ url('/login/github') }}" class="btn btn-github" style="">
                                     <span class="fab fa-github"></span>
