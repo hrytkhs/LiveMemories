@@ -66,6 +66,14 @@
                             </div>
                         </form>
                         <div class="form-group row">
+                            <label for="twitter" class="col-md-8 offset-md-4">
+                                <a href="{{ url('/login/twitter') }}" class="btn btn-twitter" style="">
+                                    <span class="fab fa-twitter"></span>
+                                    Twitterでログイン
+                                </a>
+                            </label>
+                        </div>
+                        <div class="form-group row">
                             <label for="github" class="col-md-8 offset-md-4">
                                 <a href="{{ url('/login/github') }}" class="btn btn-github" style="">
                                     <span class="fab fa-github"></span>
