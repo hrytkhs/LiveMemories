@@ -68,13 +68,13 @@
                         <div class="form-group row">
                             <label for="sns-login" class="col-md-8 offset-md-4">― SNSアカウントでログイン ―</label>
                             <label for="twitter" class="col-md-8 offset-md-4">
-                                <a href="{{ url('/login/twitter') }}" class="btn btn-twitter" style="">
+                                <a href="{{ url('/login/twitter') }}" class="btn btn-s-twitter" style="">
                                     <span class="fab fa-twitter"></span>
                                     Twitterでログイン
                                 </a>
                             </label>
                             <label for="github" class="col-md-8 offset-md-4">
-                                <a href="{{ url('/login/github') }}" class="btn btn-github" style="">
+                                <a href="{{ url('/login/github') }}" class="btn btn-s-github" style="">
                                     <span class="fab fa-github"></span>
                                     GitHubでログイン
                                 </a>

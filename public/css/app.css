@@ -24,25 +24,25 @@
   font-family: cursive;
 }
 
-.btn-twitter {
+.btn-s-twitter {
     color: #fff;
     background-color: #55acee;
     border-color: rgba(0,0,0,0.2)
     border-radius: 1;
 }
-.btn-twitter:hover {
+.btn-s-twitter:hover {
     color: #fff;
     background-color: #2795e9;
     border-color: rgba(0,0,0,0.2)
 }
 
-.btn-github {
+.btn-s-github {
     color: #fff;
     background-color: #444;
     border-color: rgba(0,0,0,0.2)
     border-radius: 1;
 }
-.btn-github:hover {
+.btn-s-github:hover {
     color: #fff;
     background-color: #2b2b2b;
     border-color: rgba(0,0,0,0.2)
