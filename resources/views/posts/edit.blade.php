@@ -6,26 +6,40 @@
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="artist">アーティスト名</label>
+            <label for="artist">アーティスト名 ※</label>
             <input id="artist" type="text" class="form-control" name="artist" value="{{ $post->artist }}" required autofocus>
         </div>
         <div class="form-group">
-            <label for="title">公演名</label>
+            <label for="title">公演名 ※</label>
             <input id="title" type="text" class="form-control" name="title" value="{{ $post->title }}" required>
         </div>
         <div class="form-group">
-            <label for="date">開催日</label><br>
+            <label for="date">開催日 ※</label><br>
             <input id="date" type="date" class="form-control w-50" name="date" value="{{ $post->date }}" required>
         </div>
         <div class="form-group">
-            <label for="venu">会場名</label>
-            <input id="venu" type="text" class="form-control" name="venu" value="{{ $post->venu }}" required>
+            <label for="venue">会場名</label>
+            <select name="venue_id" class="form-control">
+                @if(isset($venue_item))
+                    <option value="{{ $venue_item->id }}">{{ $venue_item->name }}</option>
+                    <option value=""></option>
+                    @foreach ($venue_items as $venue)
+                    <option value="{{ $venue->id }}">{{ $venue->name }}</option>
+                    @endforeach
+                @else
+                    <option value=""></option>
+                    @foreach ($venue_items as $venue)
+                    <option value="{{ $venue->id }}">{{ $venue->name }}</option>
+                    @endforeach
+                @endif
+            </select>
         </div>
         <div class="form-group">
-            <label for="body">セットリスト</label>
-            <textarea id="body" class="form-control" name="body" rows="8" required placeholder="例：&#13;&#10;1. song1&#13;&#10;2. song2&#13;&#10;3. song3">{{ $post->body }}</textarea>
+            <label for="body">公演メモ</label>
+            <textarea id="body" class="form-control" name="body" rows="8" placeholder="セットリスト・感想など">{{ $post->body }}</textarea>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary float-right">登録</button>
+        <button type="submit" name="submit" class="btn btn-primary float-right">更新</button>
     </form>
+    <p>※入力必須</p>
 </div>
 @endsection

@@ -16,7 +16,7 @@
             </a>
         </dd>
         <dt class="col-md-12 mt-3 mb-1">オフィシャルビデオ：</dt>
-        <dd class="col-md-8">
+        <dd class="col-md-6">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="{{ $artist->video_url }}" allowfullscreen></iframe>
             </div>

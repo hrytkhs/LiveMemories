@@ -23,6 +23,8 @@ Route::resource('posts', 'PostController');
 
 Route::resource('artists', 'ArtistController');
 
+Route::resource('venues', 'VenueController');
+
 Route::get('company', function () {return view('company');});
 
 Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');

@@ -20,7 +20,7 @@ class PostsTableSeeder extends Seeder
                 'artist' => $faker->name(),
                 'title' => $faker->text(20),
                 'date' => $faker->date(),
-                'venu' => $faker->city(),
+                'venue_id' => $faker->numberBetween(1, 7),
                 'body' => $faker->text(150),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),

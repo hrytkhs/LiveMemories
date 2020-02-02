@@ -18,8 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('artist');
             $table->string('title');
             $table->date('date');
-            $table->text('venu');
-            $table->text('body');
+            $table->text('venue_id')->nullable();
+            $table->text('body')->nullable();
             $table->timestamps();
             $table->integer('user_id')->unsigned()->default(1);
             $table->foreign('user_id')

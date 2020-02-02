@@ -11,13 +11,8 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function artist()
+    public function venue()
     {
-        return $this->belongsTo('App\Artist');
-    }
-
-    public function venu()
-    {
-        return $this->belongsTo('App\Venu');
+        return $this->belongsTo('App\Venue');
     }
 }

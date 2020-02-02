@@ -20,6 +20,13 @@
 </head>
 
 <body>
+    <header clss="navbar navbar-expand-lg navbar-right">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="font-weight-bold align-middle" style="font-size:12px;">ライブ情報共有サービス</div>
+            </div>
+        </div>
+    </header>
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#14121F;">
             <div class="container-fluid">
@@ -33,18 +40,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     {{-- Navbarの左側 --}}
                     <ul class="navbar-nav mr-auto ml-4" style="font-size:14px;">
-                        {{-- 「記事」と「ユーザー」へのリンク --}}
+                        {{-- 各種リンク --}}
                         <li class="nav-item mr-3">
-                            <a class="nav-link" href="{{ url('posts') }}">セットリスト</a>
+                            <a class="nav-link" href="{{ url('posts') }}">投稿</a>
                         </li>
                         <li class="nav-item mr-3">
                             <a class="nav-link" href="{{ url('artists') }}">アーティスト</a>
                         </li>
                         <li class="nav-item mr-3">
-                            <a class="nav-link" href="{{ url('users') }}">ユーザー</a>
+                            <a class="nav-link" href="{{ url('venues') }}">会場</a>
                         </li>
                         <li class="nav-item mr-3">
-                            <a class="nav-link" href="{{ url('company') }}">運営会社</a>
+                            <a class="nav-link" href="{{ url('users') }}">ユーザー</a>
                         </li>
                     </ul>
 
@@ -68,7 +75,7 @@
                         @else
                             {{-- 「マイページ」と「ログアウト」のドロップダウンメニュー --}}
                             <li class="nav-item dropdown mr-3">
-                                <a class="nav-link dropdown-toggle mt-1 mx-1" href="#" id="dropdown-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="far fa-user"></i>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -89,6 +96,9 @@
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('company') }}">運営会社</a>
+                        </li>
                     </ul>
                 </div>
             </div>

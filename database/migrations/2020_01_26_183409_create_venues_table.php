@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArtistsTable extends Migration
+class CreateVenuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateArtistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('artists', function (Blueprint $table) {
+        Schema::create('venues', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('artist');
-            $table->text('profile')->nullable();
-            $table->text('artist_site_url')->nullable();
-            $table->text('video_url')->nullable();
+            $table->string('name');
+            $table->text('address')->nullable();
+            $table->text('venue_site_url')->nullable();
+            $table->text('map_url')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateArtistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artists');
+        Schema::dropIfExists('venues');
     }
 }

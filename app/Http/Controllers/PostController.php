@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Venue;
 
 class PostController extends Controller
 {
@@ -19,8 +20,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('date')->paginate(4);
-        return view('posts.index', ['posts' => $posts]);
+        $posts = Post::latest('created_at')->paginate(4);
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -30,7 +31,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $venue = Venue::select('id','name')->get();
+        return view('posts.create', compact('venue'));
     }
 
     /**
@@ -45,7 +47,7 @@ class PostController extends Controller
         $post->artist = $request->artist;
         $post->title = $request->title;
         $post->date = $request->date;
-        $post->venu = $request->venu;
+        $post->venue_id = $request->venue_id;
         $post->body = $request->body;
         $post->user_id = $request->user()->id;
         $post->save();
@@ -59,20 +61,28 @@ class PostController extends Controller
      * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post, Venue $venue)
     {
-        return view('posts.show', ['post' => $post]);
+        $venue_id = $post->venue_id;
+        $venue_item = Venue::find($venue_id);
+        return view('posts.show', compact('post','venue','venue_id','venue_item'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Post  $post
+     * @param  \App\Venue  $venue
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post, Venue $venue)
     {
-        return view('posts.edit', ['post' => $post]);
+        $venue_id = $post->venue_id;
+        $venue_item = Venue::find($venue_id);
+
+        $venue_items = Venue::select('id','name')->get();
+        return view('posts.edit', compact('post','venue','venue_item','venue_items'));
     }
 
     /**
@@ -87,7 +97,7 @@ class PostController extends Controller
         $post->artist = $request->artist;
         $post->title = $request->title;
         $post->date = $request->date;
-        $post->venu = $request->venu;
+        $post->venue_id = $request->venue_id;
         $post->body = $request->body;
         $post->save();
         return redirect('posts/' . $post->id)

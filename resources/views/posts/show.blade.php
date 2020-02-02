@@ -18,14 +18,20 @@
         </dd>
         <dt class="col-md-2">開催場所：</dt>
         <dd class="col-md-10">
-            {{ $post->venu }}
+          @if(isset($venue_item))
+          <a href="{{ url('venues/' . $venue_id) }}">
+              {{ $venue_item->name }}
+          </a>
+          @else
+          <a href="#"></a>
+          @endif
         </dd>
     </dl>
 
     <hr>
 
     <div id="post-body">
-        <span class="font-weight-bold">セットリスト：</span>
+        <span class="font-weight-bold">公演メモ：</span>
         <p>{{ $post->body }}</p>
     </div>
 

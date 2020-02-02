@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
-<div class="container">
-    <h2>運営会社</h2>
+<div class="container offset-md-3 col-md-6 offset-md-3">
+    <h2 class="mb-4">運営会社</h2>
     <div class="table-responsive">
         <table class="table table-bordered table-condensed">
             <tbody>
