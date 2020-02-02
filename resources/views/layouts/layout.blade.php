@@ -20,10 +20,10 @@
 </head>
 
 <body>
-    <header clss="navbar navbar-expand-lg navbar-right">
+    <header class="h-25">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <div class="font-weight-bold align-middle" style="font-size:12px;">ライブ情報共有サービス</div>
+            <div>
+                <span class="font-weight-bold" style="font-size:12px;">ライブ情報共有サービス</span>
             </div>
         </div>
     </header>
