@@ -110,7 +110,7 @@
             @yield('content')
         </main>
 
-        <footer class="container-fluid fixed-bottom">
+        <footer class="container-fluid fixed-bottom footer">
             <div class="text-center text-muted" style="font-size: 12px;">© 2020 Fujiyama inc.</div>
         </footer>
 
