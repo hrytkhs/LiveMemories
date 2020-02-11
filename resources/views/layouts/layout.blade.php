@@ -106,7 +106,7 @@
                 </div>
             @endif
 
-        <main class="py-4">
+        <main class="pt-4 pb-5">
             @yield('content')
         </main>
 
