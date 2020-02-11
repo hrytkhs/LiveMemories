@@ -28,7 +28,7 @@
     {{-- ユーザーの投稿一覧 --}}
     <h5>最近の投稿</h5>
     @foreach ($user->posts as $post)
-        <div class="card mb-4">
+        <div class="card mb-3">
             <div class="card-header">
                 <div class="card-title h5">
                     公演名 ： <a class="card-link font-weight-bold" href="{{ route('posts.show', ['post' => $post]) }}">{{ $post->title }}</a>

@@ -1,10 +1,9 @@
 @extends('layouts.layout')
-@section('title', 'LiveMemories')
 @section('content')
 <div class="jumbotron jumbotron-fluid">
-    <div class="container jumbotron-container">
+    <div class="container top-text">
         <h1 class="site-name">LiveMemories</h1>
-        <p class="top-font"></p>
+        <h6>― ライブ情報記録・共有サービス ―</h6>
     </div>
 </div>
 @endsection

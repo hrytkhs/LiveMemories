@@ -20,15 +20,8 @@
 </head>
 
 <body>
-    <header class="h-25">
-        <div class="container-fluid">
-            <div>
-                <span class="font-weight-bold" style="font-size:12px;">ライブ情報共有サービス</span>
-            </div>
-        </div>
-    </header>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#14121F;">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color:#14121F;">
             <div class="container-fluid">
                 <a class="navbar-brand site-name" href="{{ url('/') }}" style="font-size:30px;">
                     LiveMemories
@@ -53,13 +46,16 @@
                         <li class="nav-item mr-3">
                             <a class="nav-link" href="{{ url('users') }}">ユーザー</a>
                         </li>
+                        <li class="nav-item mr-3">
+                            <a class="nav-link" href="{{ url('company') }}">運営会社</a>
+                        </li>
                     </ul>
 
                     {{-- Navbarの右側 --}}
                     <ul class="navbar-nav ml-4" style="font-size:14px;">
 
                         {{-- 投稿ボタン --}}
-                        <li class="nav-item mr-4 d-flex align-items-center">
+                        <li class="nav-item mr-3 d-flex align-items-center">
                             <a href="{{ url('posts/create') }}" id="new-post" class="btn btn-success">投稿する</a>
                         </li>
 
@@ -69,12 +65,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">ログイン</a>
                             </li>
-                            <li class="nav-item mr-4">
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">新規登録</a>
                             </li>
                         @else
                             {{-- 「マイページ」と「ログアウト」のドロップダウンメニュー --}}
-                            <li class="nav-item dropdown mr-3">
+                            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="far fa-user"></i>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -96,9 +92,6 @@
                                 </div>
                             </li>
                         @endguest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('company') }}">運営会社</a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -116,6 +109,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="container-fluid fixed-bottom">
+            <div class="text-center text-muted" style="font-size: 12px;">© 2020 Fujiyama inc.</div>
+        </footer>
+
     </div>
 
     {{-- JavaScript --}}
