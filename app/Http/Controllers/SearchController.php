@@ -10,9 +10,9 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::where('artist', 'like', "%{$request->search}%")
-        ->orWhere('title', 'like', "%{$request->search}%")
-        ->orWhere('body', 'like', "%{$request->search}%")
+        $posts = Post::whereRaw('artist', 'like', "%{$request->search}%")
+        ->orWhereRaw('title', 'like', "%{$request->search}%")
+        ->orWhereRaw('body', 'like', "%{$request->search}%")
         ->orderBy('created_at', 'desc')
         ->paginate(5);
 
