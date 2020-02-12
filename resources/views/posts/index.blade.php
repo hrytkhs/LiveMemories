@@ -2,14 +2,14 @@
 @section('content')
 <div class="container">
     <div class="row align-items-center mb-1">
-        <div class="col">
+        <div class="col-md-4">
             <h2>投稿一覧</h2>
         </div>
 
-        <div class="col-md-5 d-flex flex-column align-items-end">
+        <div class="align-items-end col">
             {{-- 検索フォーム --}}
             <form class="form-inline" action="{{ route('posts.search') }}" method="get">
-                <input type="text" class="form-control-sm mr-1" placeholder="検索..." name="search">
+                <input type="text" class="form-control-sm mr-1 offset-md-5 col" placeholder="検索..." name="search">
                 <button type="submit" class="btn btn-outline-success fas fa-search"> 検索</button>
             </form>
         </div>
