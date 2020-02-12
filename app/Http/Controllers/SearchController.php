@@ -13,8 +13,11 @@ class SearchController extends Controller
         $posts = Post::where('artist', 'like', "%{$request->search}%")
         ->orWhere('title', 'like', "%{$request->search}%")
         ->orWhere('body', 'like', "%{$request->search}%")
-        ->orWhereHas('user', function($query) use($request){
-            $query->where('name', 'like', "%{$request->search}%");
+        ->orWhereHas('user', function($query1) use($request){
+            $query1->where('name', 'like', "%{$request->search}%");
+        })
+        ->orWhereHas('venue', function($query2) use($request){
+            $query2->where('name', 'like', "%{$request->search}%");
         })
         ->orderBy('created_at', 'desc')
         ->paginate(4);
