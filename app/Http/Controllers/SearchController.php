@@ -11,13 +11,16 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         $posts = Post::where([
-            ['artist', 'like', '%{$request->search}%'],
-            ['title', 'like', '%{$request->search}%'],
-            ['body', 'like', '%{$request->search}%']
+            ['artist', 'like', "%{$request->search}%", 'or'],
+            ['title', 'like', "%{$request->search}%", 'or'],
+            ['body', 'like', "%{$request->search}%", 'or']
             ])
         ->orWhereHas('user', function($query) use($request){
             $query->where('name', 'like', "%{$request->search}%");
-        })
+            })
+        ->orWhereHas('venue', function($query) use($request){
+            $query->where('name', 'like', "%{$request->search}%");
+            })
         ->orderBy('created_at', 'desc')
         ->paginate(4);
 
