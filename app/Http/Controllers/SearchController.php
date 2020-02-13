@@ -18,9 +18,6 @@ class SearchController extends Controller
         ->orWhereHas('user', function($query) use($request){
             $query->where('name', 'like', "%{$request->search}%");
             })
-        ->orWhereHas('venues', function($query) use($request){
-            $query->where('name', 'like', "%{$request->search}%");
-            })
         ->orderBy('created_at', 'desc')
         ->paginate(4);
 
