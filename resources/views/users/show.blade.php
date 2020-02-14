@@ -7,7 +7,7 @@
     <dl class="row mt-4">
         <dt class="col-md-2">ID：</dt>
         <dd class="col-md-10">{{ $user->id }}</dd>
-        <dt class="col-md-2">ユーザーネーム：</dt>
+        <dt class="col-md-2">ユーザー名：</dt>
         <dd class="col-md-10">{{ $user->name }}</dd>
     </dl>
 

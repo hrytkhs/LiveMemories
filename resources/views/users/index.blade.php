@@ -7,7 +7,7 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">ユーザーネーム</th>
+                    <th scope="col">ユーザー名</th>
                 </tr>
             </thead>
             <tbody>
