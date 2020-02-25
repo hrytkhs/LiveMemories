@@ -9,7 +9,7 @@
 
 # LiveMemories
 
-"LiveMemories"はLaravelを使用した学習課題として作成しました。\ CRUD機能を実装したライブ情報記録・共有サービスです。
+"LiveMemories"はLaravelを使用した学習課題として作成しました。CRUD機能を実装したライブ情報記録・共有サービスです。
 
 # 特徴
 
